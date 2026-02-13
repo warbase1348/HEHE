@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vintage Valentine | Mobile Responsive</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Instrument+Serif:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-sepia: #f4ece1;
+    --clr-ink: #3d2b1f;
+    --clr-paper: #fffdfa;
+    --clr-accent: #a67c52;
+}
+
+body {
+    background-color: var(--bg-sepia);
+    background-image: radial-gradient(circle at 2px 2px, rgba(61, 43, 31, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+    color: var(--clr-ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Texture Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.font-classic { font-family: 'Libre Baskerville', serif; }
+.font-normal { font-family: 'Inter', sans-serif; }
+
+/* Butterfly Styles */
+.butterfly {
+    position: fixed;
+    opacity: 0.18;
+    z-index: -1;
+    pointer-events: none;
+    font-size: 1.8rem;
+    animation: float-up 12s linear infinite, sway 4s ease-in-out infinite, colorShift 8s ease-in-out infinite;
+}
+
+@keyframes float-up {
+    0% { bottom: -10%; transform: translateX(0); }
+    100% { bottom: 110%; transform: translateX(50px); }
+}
+
+@keyframes sway {
+    0%, 100% { margin-left: 0px; transform: rotate(0deg); }
+    50% { margin-left: 40px; transform: rotate(10deg); }
+}
+
+@keyframes colorShift {
+    0%, 100% { color: var(--clr-accent); }
+    50% { color: #8e633a; }
+}
+
+.b-1 { left: 5%; animation-delay: 0s; font-size: 1.2rem; }
+.b-2 { left: 15%; animation-delay: -4s; font-size: 2rem; }
+.b-3 { left: 25%; animation-delay: -2s; font-size: 1.5rem; }
+.b-4 { left: 40%; animation-delay: -8s; font-size: 2.2rem; }
+.b-5 { left: 55%; animation-delay: -1s; font-size: 1.4rem; }
+.b-6 { left: 70%; animation-delay: -6s; font-size: 1.9rem; }
+.b-7 { left: 85%; animation-delay: -3s; font-size: 1.6rem; }
+.b-8 { left: 95%; animation-delay: -10s; font-size: 1.3rem; }
+
+/* Flower Decor Styles */
+.flower-decor {
+    position: fixed;
+    color: var(--clr-accent);
+    opacity: 0.12;
+    z-index: -1;
+    pointer-events: none;
+}
+.f-1 { font-size: 6rem; top: -2%; left: -2%; transform: rotate(-15deg); }
+.f-2 { font-size: 5rem; bottom: 5%; right: 5%; transform: rotate(15deg); }
+
+.vintage-header {
+    padding: 60px 20px 30px;
+    text-align: center;
+    border-bottom: 2px solid var(--clr-ink);
+    margin-bottom: 40px;
+}
+
+.valentine-card {
+    background: var(--clr-paper);
+    border: 1px solid rgba(61, 43, 31, 0.3);
+    padding: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 6px 6px 0px var(--clr-ink);
+    position: relative;
+    cursor: pointer;
+}
+
+/* AESTHETIC FLOWERS ON EDGES (matching butterflies) */
+.valentine-card::before {
+    content: "❀";
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    font-size: 2.2rem;
+    z-index: 5;
+    opacity: 0.8;
+    animation: aestheticSway 4s ease-in-out infinite, colorShift 8s ease-in-out infinite;
+}
+
+/* Second smaller flower for variety */
+.valentine-card::after {
+    content: "✿";
+    position: absolute;
+    top: 5px;
+    right: -18px;
+    font-size: 1.2rem;
+    z-index: 4;
+    opacity: 0.6;
+    animation: aestheticSway 5s ease-in-out infinite reverse;
+}
+
+@keyframes aestheticSway {
+    0%, 100% { transform: rotate(-10deg) scale(1); }
+    50% { transform: rotate(15deg) scale(1.1); }
+}
+
+.valentine-card:hover {
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: 12px 12px 0px var(--clr-ink);
+}
+
+.envelope-flap {
+    height: 180px;
+    background: #e6ddd0;
+    border: 1px dashed var(--clr-ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+.val-btn {
+    background: transparent;
+    border: 1.5px solid var(--clr-ink);
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.val-btn:hover {
+    background: var(--clr-ink);
+    color: var(--clr-paper);
+}
+
+#greeting-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(45, 30, 20, 0.98);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2000;
+}
+
+.greeting-content {
+    text-align: center;
+    color: var(--bg-sepia);
+    max-width: 600px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.greeting-content img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    margin-top: 15px;
+    border: 8px solid var(--clr-paper);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#image-caption, #personal-message {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.8rem; 
+    line-height: 1.1;
+    margin-bottom: 10px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.heart-burst {
+    position: absolute;
+    color: #d63031;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: heartFly 2s ease-out forwards;
+}
+
+@keyframes heartFly {
+    0% { transform: scale(0) translateY(0); opacity: 1; }
+    100% { transform: scale(1.5) translateY(-100px); opacity: 0; }
+}
+
+@media (max-width: 576px) {
+    .vintage-header { padding: 40px 15px; }
+    .envelope-flap { height: 150px; }
+    #image-caption, #personal-message { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="butterfly b-1">ʚĭɞ</div>
+<div class="butterfly b-2">ʚĭɞ</div>
+<div class="butterfly b-3">ʚĭɞ</div>
+<div class="butterfly b-4">ʚĭɞ</div>
+<div class="butterfly b-5">ʚĭɞ</div>
+<div class="butterfly b-6">ʚĭɞ</div>
+<div class="butterfly b-7">ʚĭɞ</div>
+<div class="butterfly b-8">ʚĭɞ</div>
+
+<div class="flower-decor f-1">❀</div>
+<div class="flower-decor f-2">✿</div>
+
+<header class="container vintage-header">
+    <p class="text-uppercase small mb-1 font-normal" style="letter-spacing: 2px; font-weight: 600;">Feb 14, 2026</p>
+    <h1 class="font-classic display-5">
+        To my College Crush in CPSU
+    </h1>
+</header>
+
+<main class="container mb-5">
+<div class="row g-4 px-2">
+
+<div class="col-12 col-sm-6 col-md-4">
+    <article class="valentine-card" onclick="showGreeting('I catch myself smiling every time I think of you.')">
+        <div class="envelope-flap font-normal">
+            Tap to open
+        </div>
+    </article>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <article class="valentine-card" onclick="showImage('maming.jpg')">
+        <div class="envelope-flap font-normal">
+            Tap to open
+        </div>
+    </article>
+</div>
+
+<div class="col-12 col-md-4">
+    <article class="valentine-card" id="card3">
+        <div class="envelope-flap" id="card3-content">
+            <p class="font-normal mb-3" style="font-size: 1.1rem; font-weight: 600;">Can you be my Valentine?</p>
+            <div id="btn-wrap">
+                <button id="yesBtn" class="val-btn me-2 font-normal" onclick="confirmYes(event)">Yes</button>
+                <button id="noBtn" class="val-btn font-normal" onmouseover="moveNo(this)">No</button>
+            </div>
+        </div>
+    </article>
+</div>
+
+</div>
+</main>
+
+<div id="greeting-overlay" onclick="closeGreeting()">
+    <div class="greeting-content">
+        <h2 id="image-caption"></h2>
+        <p id="personal-message"></p>
+        <img id="overlay-image" src="" style="display:none;">
+        <p class="small text-uppercase mt-4 opacity-50 font-normal" style="letter-spacing: 2px;">( Tap to close )</p>
+    </div>
+</div>
+
+<script>
+function showGreeting(msg) {
+    const overlay = document.getElementById('greeting-overlay');
+    const img = document.getElementById('overlay-image');
+    const caption = document.getElementById('image-caption');
+    const messageEl = document.getElementById('personal-message');
+    img.style.display = "none";
+    caption.innerText = "";
+    messageEl.innerText = msg;
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.style.opacity = "1", 10);
+}
+
+function showImage(imageName) {
+    const overlay = document.getElementById('greeting-overlay');
+    const img = document.getElementById('overlay-image');
+    const caption = document.getElementById('image-caption');
+    const messageEl = document.getElementById('personal-message');
+    img.src = imageName;
+    img.style.display = "block";
+    caption.innerText = imageName === 'maming.jpg' ? "qtiee ta gali together chann HAHA" : "";
+    messageEl.innerText = "";
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.style.opacity = "1", 10);
+}
+
+function closeGreeting() {
+    const overlay = document.getElementById('greeting-overlay');
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.style.display = 'none', 400);
+}
+
+function moveNo(btn) {
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 60 - 30;
+    btn.style.position = "relative";
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function confirmYes(e) {
+    e.stopPropagation();
+    const container = document.getElementById("card3-content");
+    container.innerHTML = `
+        <p class="font-normal mb-3" style="font-size: 1.1rem; font-weight: 600;">Are u sure?</p>
+        <div>
+            <button class="val-btn me-2 font-normal" onclick="finalReveal(event)">Yes</button>
+            <button class="val-btn font-normal" onmouseover="moveNo(this)">No</button>
+        </div>
+    `;
+}
+
+function finalReveal(e) {
+    e.stopPropagation();
+    const card = document.getElementById("card3");
+    
+    for(let i=0; i<15; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart-burst';
+        h.innerText = '❤';
+        h.style.left = (e.clientX + (Math.random()*60-30)) + 'px';
+        h.style.top = (e.clientY + (Math.random()*60-30)) + 'px';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 2000);
+    }
+
+    card.innerHTML = '<div class="envelope-flap"><img src="foryou.jpg" alt="foryou" style="width:100%; height:100%; object-fit:cover;"></div>';
+}
+</script>
+
+</body>
+</html>
