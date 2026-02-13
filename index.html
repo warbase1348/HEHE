@@ -24,8 +24,9 @@ body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     position: relative;
-    padding-bottom: 80px; /* Space for the footer link */
 }
 
 /* Texture Overlay */
@@ -155,7 +156,6 @@ body::before {
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    pointer-events: auto;
 }
 
 .val-btn:hover {
@@ -163,13 +163,17 @@ body::before {
     color: var(--clr-paper);
 }
 
-/* Minimalist TikTok Link Styling */
+/* RESPONSIVE STEADY LINK */
+footer {
+    margin-top: auto;
+    padding: 40px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Right side on desktop */
+}
+
 .bottom-link-wrapper {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
     text-align: right;
-    z-index: 100;
     animation: fadeIn 3s ease-in;
 }
 
@@ -177,7 +181,7 @@ body::before {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     opacity: 0.7;
 }
 
@@ -188,11 +192,6 @@ body::before {
     font-size: 0.85rem;
     border-bottom: 1px solid var(--clr-accent);
     transition: all 0.3s ease;
-}
-
-.bottom-link-wrapper a:hover {
-    color: var(--clr-accent);
-    border-bottom-color: var(--clr-ink);
 }
 
 @keyframes fadeIn {
@@ -238,7 +237,6 @@ body::before {
     line-height: 1.1;
     margin-bottom: 10px;
     font-weight: 400;
-    text-align: center;
 }
 
 .heart-burst {
@@ -258,7 +256,14 @@ body::before {
     .vintage-header { padding: 40px 15px; }
     .envelope-flap { height: 150px; }
     #image-caption, #personal-message { font-size: 2.2rem; }
-    .bottom-link-wrapper { right: 10px; bottom: 10px; }
+    
+    footer {
+        justify-content: center; /* Center link on mobile for better touch target */
+        padding-bottom: 30px;
+    }
+    .bottom-link-wrapper {
+        text-align: center;
+    }
 }
 </style>
 </head>
@@ -278,27 +283,21 @@ body::before {
 
 <header class="container vintage-header">
     <p class="text-uppercase small mb-1 font-normal" style="letter-spacing: 2px; font-weight: 600;">Feb 14, 2026</p>
-    <h1 class="font-classic display-5">
-        To my College Crush in CPSU
-    </h1>
+    <h1 class="font-classic display-5">To my College Crush in CPSU</h1>
 </header>
 
-<main class="container mb-5">
+<main class="container">
 <div class="row g-4 px-2">
 
 <div class="col-12 col-sm-6 col-md-4">
     <article class="valentine-card" onclick="showGreeting('I catch myself smiling every time I think of you.')">
-        <div class="envelope-flap font-normal">
-            Tap to open
-        </div>
+        <div class="envelope-flap font-normal">Tap to open</div>
     </article>
 </div>
 
 <div class="col-12 col-sm-6 col-md-4">
     <article class="valentine-card" onclick="showImage('maming.jpg')">
-        <div class="envelope-flap font-normal">
-            Tap to open
-        </div>
+        <div class="envelope-flap font-normal">Tap to open</div>
     </article>
 </div>
 
@@ -317,10 +316,12 @@ body::before {
 </div>
 </main>
 
-<div class="bottom-link-wrapper font-normal">
-    <p>After you open the cards</p>
-    <a href="https://vt.tiktok.com/ZSm2WX6mn/" target="_blank">Click this link</a>
-</div>
+<footer>
+    <div class="bottom-link-wrapper font-normal">
+        <p>After you open the cards</p>
+        <a href="https://vt.tiktok.com/ZSm2WX6mn/" target="_blank">Click this link</a>
+    </div>
+</footer>
 
 <div id="greeting-overlay" onclick="closeGreeting()">
     <div class="greeting-content">
