@@ -25,6 +25,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+    padding-bottom: 80px; /* Space for the footer link */
 }
 
 /* Texture Overlay */
@@ -75,7 +76,6 @@ body::before {
 .b-7 { left: 85%; animation-delay: -3s; font-size: 1.6rem; }
 .b-8 { left: 95%; animation-delay: -10s; font-size: 1.3rem; }
 
-/* Flower Decor Styles */
 .flower-decor {
     position: fixed;
     color: var(--clr-accent);
@@ -103,7 +103,6 @@ body::before {
     cursor: pointer;
 }
 
-/* AESTHETIC FLOWERS ON EDGES (matching butterflies) */
 .valentine-card::before {
     content: "❀";
     position: absolute;
@@ -115,7 +114,6 @@ body::before {
     animation: aestheticSway 4s ease-in-out infinite, colorShift 8s ease-in-out infinite;
 }
 
-/* Second smaller flower for variety */
 .valentine-card::after {
     content: "✿";
     position: absolute;
@@ -163,6 +161,43 @@ body::before {
 .val-btn:hover {
     background: var(--clr-ink);
     color: var(--clr-paper);
+}
+
+/* Minimalist TikTok Link Styling */
+.bottom-link-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
+    z-index: 100;
+    animation: fadeIn 3s ease-in;
+}
+
+.bottom-link-wrapper p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+.bottom-link-wrapper a {
+    color: var(--clr-ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--clr-accent);
+    transition: all 0.3s ease;
+}
+
+.bottom-link-wrapper a:hover {
+    color: var(--clr-accent);
+    border-bottom-color: var(--clr-ink);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #greeting-overlay {
@@ -223,6 +258,7 @@ body::before {
     .vintage-header { padding: 40px 15px; }
     .envelope-flap { height: 150px; }
     #image-caption, #personal-message { font-size: 2.2rem; }
+    .bottom-link-wrapper { right: 10px; bottom: 10px; }
 }
 </style>
 </head>
@@ -280,6 +316,11 @@ body::before {
 
 </div>
 </main>
+
+<div class="bottom-link-wrapper font-normal">
+    <p>After you open the cards</p>
+    <a href="https://vt.tiktok.com/ZSm2WX6mn/" target="_blank">Click this link</a>
+</div>
 
 <div id="greeting-overlay" onclick="closeGreeting()">
     <div class="greeting-content">
