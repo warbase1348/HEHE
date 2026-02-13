@@ -290,7 +290,7 @@ footer {
 <div class="row g-4 px-2">
 
 <div class="col-12 col-sm-6 col-md-4">
-    <article class="valentine-card" onclick="showGreeting('I catch myself smiling every time I think of you.')">
+    <article class="valentine-card" onclick="showGreeting('Happ Hearts Day Chann!🫶🏻💐')">
         <div class="envelope-flap font-normal">Tap to open</div>
     </article>
 </div>
@@ -302,13 +302,9 @@ footer {
 </div>
 
 <div class="col-12 col-md-4">
-    <article class="valentine-card" id="card3">
-        <div class="envelope-flap" id="card3-content">
-            <p class="font-normal mb-3" style="font-size: 1.1rem; font-weight: 600;">Will you be my Valentine?</p>
-            <div id="btn-wrap">
-                <button id="yesBtn" class="val-btn me-2 font-normal" onclick="confirmYes(event)">Yes</button>
-                <button id="noBtn" class="val-btn font-normal" onmouseover="moveNo(this)">No</button>
-            </div>
+    <article class="valentine-card" id="card3" onclick="openValentineQuestion()">
+        <div class="envelope-flap font-normal" id="card3-content">
+            Tap to open
         </div>
     </article>
 </div>
@@ -369,6 +365,21 @@ function moveNo(btn) {
     const y = Math.random() * 60 - 30;
     btn.style.position = "relative";
     btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// NEW FUNCTION FOR CARD 3 INITIAL OPEN
+function openValentineQuestion() {
+    const container = document.getElementById("card3-content");
+    // Change content to the question
+    container.innerHTML = `
+        <p class="font-normal mb-3" style="font-size: 1.1rem; font-weight: 600;">Will you be my Valentine?</p>
+        <div id="btn-wrap">
+            <button id="yesBtn" class="val-btn me-2 font-normal" onclick="confirmYes(event)">Yes</button>
+            <button id="noBtn" class="val-btn font-normal" onmouseover="moveNo(this)">No</button>
+        </div>
+    `;
+    // Remove the onclick from the card so it doesn't reset when clicking buttons
+    document.getElementById("card3").onclick = null;
 }
 
 function confirmYes(e) {
